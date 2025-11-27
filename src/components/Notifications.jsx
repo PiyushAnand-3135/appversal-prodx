@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 'use client';
 
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeNotification } from '@/redux/slices/notificationSlice';
 
