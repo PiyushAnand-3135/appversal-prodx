@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMembers } from '@/redux/slices/membersSlice';
 import { setUser } from '@/redux/slices/roleSlice';
 import Header from '@/components/Header';
+import Sidebar from '@/components/Sidebar';
 import TeamLeadView from '@/components/TeamLeadView';
 import StatusSelector from '@/components/StatusSelector';
 import axios from 'axios';
@@ -41,9 +42,12 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      <main className="max-w-7xl mx-auto px-6 py-8">
-        {currentRole === 'lead' ? <TeamLeadView /> : <StatusSelector />}
-      </main>
+      <div className="flex">
+        <Sidebar />
+        <main className="flex-1 px-6 py-8">
+          {currentRole === 'lead' ? <TeamLeadView /> : <StatusSelector />}
+        </main>
+      </div>
     </div>
   );
 }
