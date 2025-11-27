@@ -125,7 +125,7 @@ export default function LandingPage() {
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 bg-white rounded-full"></div>
-                  <p className="text-sm">6 Team Members</p>
+                  {/* <p className="text-sm">6 Team Members</p> */}
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 bg-white rounded-full"></div>
