@@ -37,7 +37,7 @@ export default function TasksPage() {
 
             {/* Team Members List - For Leads */}
             {currentRole === 'lead' && (
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8">
                 <div className="p-6 border-b border-gray-200">
                   <h2 className="text-xl font-semibold text-gray-900">Team Members</h2>
                 </div>
@@ -76,6 +76,71 @@ export default function TasksPage() {
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {/* Currently Assigned Tasks - For Leads */}
+            {currentRole === 'lead' && (
+              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+                <h2 className="text-lg font-semibold text-gray-900 mb-6">Currently Assigned Tasks</h2>
+                <div className="space-y-3">
+                  {members.flatMap((member: any) =>
+                    member.tasks?.map((task: any) => (
+                      <div
+                        key={`${member.id}-${task.id}`}
+                        className="flex items-center justify-between p-4 bg-gradient-to-r from-slate-50 to-white rounded-xl border border-slate-200 hover:shadow-md hover:border-slate-300 transition-all group"
+                      >
+                        <div className="flex-1 flex items-start gap-4">
+                          <img
+                            src={member.avatar}
+                            alt={member.name}
+                            className="w-10 h-10 rounded-full flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2">
+                              <p className="font-semibold text-gray-900 group-hover:text-slate-700 transition-colors">{task.title}</p>
+                              <span className={`px-2 py-0.5 rounded text-xs font-semibold flex-shrink-0 ${
+                                task.completed
+                                  ? 'bg-green-100 text-green-700'
+                                  : 'bg-amber-100 text-amber-700'
+                              }`}>
+                                {task.completed ? 'Completed' : 'In Progress'}
+                              </span>
+                            </div>
+                            <p className="text-sm text-gray-600 mt-1">{member.name}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-4 flex-shrink-0">
+                          <div className="text-right">
+                            <p className="text-sm font-semibold text-gray-900">{task.progress}%</p>
+                            <p className="text-xs text-gray-500">
+                              {new Date(task.dueDate).toLocaleDateString()}
+                            </p>
+                          </div>
+
+                          <div className="w-24 bg-gray-200 rounded-full h-2.5">
+                            <div
+                              className={`h-2.5 rounded-full transition-all ${
+                                task.completed ? 'bg-green-500' : 'bg-gradient-to-r from-blue-500 to-slate-700'
+                              }`}
+                              style={{ width: `${task.progress}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  ).slice(0, 8)}
+                </div>
+
+                {members.every((m: any) => !m.tasks?.length) && (
+                  <div className="text-center py-8">
+                    <svg className="w-12 h-12 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p className="text-gray-500 font-medium">No tasks assigned yet</p>
+                  </div>
+                )}
               </div>
             )}
 

@@ -296,25 +296,7 @@ export default function MemberProfilePage() {
           </div>
         </div>
 
-        {/* Performance Summary */}
-        <div className="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 rounded-xl border-2 border-blue-200 p-8">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Performance Summary</h3>
-              <p className="text-gray-700 leading-relaxed">
-                {member.name} has completed <span className="font-semibold text-green-600">{stats.completed} out of {stats.total}</span> tasks with a <span className="font-semibold text-purple-600">{stats.completion}%</span> completion rate. 
-                {stats.completion >= 80 && <span className="text-green-600 font-medium"> 🎉 Excellent performance! Keep up this momentum!</span>}
-                {stats.completion >= 60 && stats.completion < 80 && <span className="text-blue-600 font-medium"> 👍 Good progress! Focus on completing the remaining tasks.</span>}
-                {stats.completion < 60 && <span className="text-amber-600 font-medium"> 📈 There's room for improvement. Let's prioritize pending tasks.</span>}
-              </p>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   );

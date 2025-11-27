@@ -20,9 +20,9 @@ export default function StatusDistribution() {
 
   const colors = {
     Working: '#10b981',
-    Break: '#f59e0b',
-    Meeting: '#3b82f6',
-    Offline: '#d1d5db',
+    Break: '#eab308',
+    Meeting: '#06b6d4',
+    Offline: '#cbd5e1',
   };
 
   const totalMembers = members.length;

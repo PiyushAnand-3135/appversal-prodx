@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MemberCard from './MemberCard';
 import StatusDistribution from './StatusDistribution';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts';
+import { MdWork, MdLocalCafe, MdGroups, MdSignalCellularOff } from 'react-icons/md';
 
 export default function TeamLeadView() {
   const dispatch = useDispatch();
@@ -84,52 +85,56 @@ export default function TeamLeadView() {
     <div className="space-y-6">
       {/* Key Metrics */}
       <div className="grid grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4 hover:shadow-md transition-shadow">
-          <div className="flex items-center justify-between">
+        <div className="bg-gradient-to-br from-emerald-100/60 to-teal-50/60 rounded-xl border border-emerald-200/50 shadow-sm p-6 hover:shadow-lg hover:border-emerald-300 transition-all duration-300 group">
+          <div className="flex items-start justify-between">
             <div>
-              <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">Working</p>
-              <p className="text-2xl font-bold text-gray-900">{statusCounts.Working}</p>
+              <p className="text-xs text-emerald-700 uppercase tracking-wider font-semibold">Working</p>
+              <p className="text-3xl font-bold text-emerald-900 mt-2">{statusCounts.Working}</p>
             </div>
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <div className="w-14 h-14 bg-gradient-to-br from-emerald-300/70 to-teal-400/70 rounded-xl flex items-center justify-center text-emerald-900 group-hover:scale-110 transition-transform shadow-md">
+              <MdWork size={28} />
             </div>
           </div>
+          <p className="text-xs text-emerald-600 mt-4">Active members</p>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4 hover:shadow-md transition-shadow">
-          <div className="flex items-center justify-between">
+        <div className="bg-gradient-to-br from-amber-100/60 to-yellow-50/60 rounded-xl border border-amber-200/50 shadow-sm p-6 hover:shadow-lg hover:border-amber-300 transition-all duration-300 group">
+          <div className="flex items-start justify-between">
             <div>
-              <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">Break</p>
-              <p className="text-2xl font-bold text-gray-900">{statusCounts.Break}</p>
+              <p className="text-xs text-amber-700 uppercase tracking-wider font-semibold">Break</p>
+              <p className="text-3xl font-bold text-amber-900 mt-2">{statusCounts.Break}</p>
             </div>
-            <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+            <div className="w-14 h-14 bg-gradient-to-br from-amber-300/70 to-yellow-400/70 rounded-xl flex items-center justify-center text-amber-900 group-hover:scale-110 transition-transform shadow-md">
+              <MdLocalCafe size={28} />
             </div>
           </div>
+          <p className="text-xs text-amber-600 mt-4">On break</p>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4 hover:shadow-md transition-shadow">
-          <div className="flex items-center justify-between">
+        <div className="bg-gradient-to-br from-sky-100/60 to-blue-50/60 rounded-xl border border-sky-200/50 shadow-sm p-6 hover:shadow-lg hover:border-sky-300 transition-all duration-300 group">
+          <div className="flex items-start justify-between">
             <div>
-              <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">Meeting</p>
-              <p className="text-2xl font-bold text-gray-900">{statusCounts.Meeting}</p>
+              <p className="text-xs text-sky-700 uppercase tracking-wider font-semibold">Meeting</p>
+              <p className="text-3xl font-bold text-sky-900 mt-2">{statusCounts.Meeting}</p>
             </div>
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-              <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <div className="w-14 h-14 bg-gradient-to-br from-sky-300/70 to-blue-400/70 rounded-xl flex items-center justify-center text-sky-900 group-hover:scale-110 transition-transform shadow-md">
+              <MdGroups size={28} />
             </div>
           </div>
+          <p className="text-xs text-sky-600 mt-4">In meetings</p>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4 hover:shadow-md transition-shadow">
-          <div className="flex items-center justify-between">
+        <div className="bg-gradient-to-br from-slate-100/60 to-gray-50/60 rounded-xl border border-slate-200/50 shadow-sm p-6 hover:shadow-lg hover:border-slate-300 transition-all duration-300 group">
+          <div className="flex items-start justify-between">
             <div>
-              <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">Offline</p>
-              <p className="text-2xl font-bold text-gray-900">{statusCounts.Offline}</p>
+              <p className="text-xs text-slate-700 uppercase tracking-wider font-semibold">Offline</p>
+              <p className="text-3xl font-bold text-slate-900 mt-2">{statusCounts.Offline}</p>
             </div>
-            <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-              <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+            <div className="w-14 h-14 bg-gradient-to-br from-slate-300/70 to-gray-400/70 rounded-xl flex items-center justify-center text-slate-900 group-hover:scale-110 transition-transform shadow-md">
+              <MdSignalCellularOff size={28} />
             </div>
           </div>
+          <p className="text-xs text-slate-600 mt-4">Offline members</p>
         </div>
       </div>
 
@@ -141,8 +146,8 @@ export default function TeamLeadView() {
             <AreaChart data={growthData}>
               <defs>
                 <linearGradient id="colorTasks" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.3}/>
+                  <stop offset="95%" stopColor="#06b6d4" stopOpacity={0}/>
                 </linearGradient>
                 <linearGradient id="colorProductivity" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
@@ -160,7 +165,7 @@ export default function TeamLeadView() {
               <Area
                 type="monotone"
                 dataKey="tasksCompleted"
-                stroke="#3b82f6"
+                stroke="#06b6d4"
                 strokeWidth={2}
                 fillOpacity={1}
                 fill="url(#colorTasks)"
@@ -181,70 +186,83 @@ export default function TeamLeadView() {
           </ResponsiveContainer>
         </div>
 
-        <StatusDistribution />
+        {/* Recruitment Metrics */}
+        <div className="flex flex-col gap-4">
+          {/* Applications Card */}
+          <div className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-lg border border-violet-200 shadow-sm p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-violet-600 uppercase tracking-wider font-semibold">Applications</p>
+                <p className="text-3xl font-bold text-violet-900 mt-2">1,249</p>
+                <p className="text-xs text-violet-600 mt-2">This month</p>
+              </div>
+              <div className="w-14 h-14 bg-gradient-to-br from-violet-300/70 to-purple-400/70 rounded-xl flex items-center justify-center text-violet-900 group-hover:scale-110 transition-transform shadow-md">
+                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                  <path fillRule="evenodd" d="M4 5a2 2 0 012-2 1 1 0 000 2H3a1 1 0 00-1 1v10a1 1 0 001 1h14a1 1 0 001-1V6a1 1 0 00-1-1h3a1 1 0 000-2h-2.5A2.5 2.5 0 0016 4.5v10.756a.5.5 0 01-.82.39l-1.54-1.233a1 1 0 00-1.28 0l-1.822 1.46a1 1 0 01-1.28-1.46l1.822-1.46a1 1 0 00-1.28-1.46l-1.54 1.232a.5.5 0 01-.82-.39V5z" clipRule="evenodd"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Interviews & Hired Card */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg border border-blue-200 shadow-sm p-6">
+              <div>
+                <p className="text-xs text-blue-600 uppercase tracking-wider font-semibold">Interviews</p>
+                <p className="text-3xl font-bold text-blue-900 mt-2">342</p>
+                <p className="text-xs text-blue-600 mt-2">Scheduled</p>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg border border-emerald-200 shadow-sm p-6">
+              <div>
+                <p className="text-xs text-emerald-600 uppercase tracking-wider font-semibold">Hired</p>
+                <p className="text-3xl font-bold text-emerald-900 mt-2">89</p>
+                <p className="text-xs text-emerald-600 mt-2">Onboarded</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Currently Assigned Tasks */}
+      {/* Monthly Target Section */}
       <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-6">Currently Assigned Tasks</h2>
-        <div className="space-y-3">
-          {members.flatMap((member) =>
-            member.tasks?.map((task) => (
-              <div
-                key={`${member.id}-${task.id}`}
-                className="flex items-center justify-between p-4 bg-gradient-to-r from-slate-50 to-white rounded-xl border border-slate-200 hover:shadow-md hover:border-slate-300 transition-all group"
-              >
-                <div className="flex-1 flex items-start gap-4">
-                  <img
-                    src={member.avatar}
-                    alt={member.name}
-                    className="w-10 h-10 rounded-full flex-shrink-0"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <p className="font-semibold text-gray-900 group-hover:text-slate-700 transition-colors">{task.title}</p>
-                      <span className={`px-2 py-0.5 rounded text-xs font-semibold flex-shrink-0 ${
-                        task.completed
-                          ? 'bg-green-100 text-green-700'
-                          : 'bg-amber-100 text-amber-700'
-                      }`}>
-                        {task.completed ? 'Completed' : 'In Progress'}
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-600 mt-1">{member.name}</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 flex-shrink-0">
-                  <div className="text-right">
-                    <p className="text-sm font-semibold text-gray-900">{task.progress}%</p>
-                    <p className="text-xs text-gray-500">
-                      {new Date(task.dueDate).toLocaleDateString()}
-                    </p>
-                  </div>
-
-                  <div className="w-24 bg-gray-200 rounded-full h-2.5">
-                    <div
-                      className={`h-2.5 rounded-full transition-all ${
-                        task.completed ? 'bg-green-500' : 'bg-gradient-to-r from-blue-500 to-slate-700'
-                      }`}
-                      style={{ width: `${task.progress}%` }}
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            ))
-          ).slice(0, 8)}
+        <div className="mb-6">
+          <h2 className="text-xl font-bold text-gray-900 mb-1">November Target</h2>
+          <div className="flex items-center justify-between">
+            <div className="w-full bg-gray-200 rounded-full h-2 mr-4" style={{ maxWidth: '400px' }}>
+              <div className="bg-slate-700 h-2 rounded-full" style={{ width: '77%' }}></div>
+            </div>
+            <span className="text-sm font-semibold text-gray-900 whitespace-nowrap">77% Complete</span>
+          </div>
         </div>
 
-        {members.every((m) => !m.tasks?.length) && (
-          <div className="text-center py-8">
-            <svg className="w-12 h-12 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <p className="text-gray-500 font-medium">No tasks assigned yet</p>
+        <div className="grid grid-cols-3 gap-4">
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <p className="text-sm text-gray-600 font-medium mb-3">Hiring Target</p>
+            <p className="text-2xl font-bold text-gray-900 mb-2">89/120</p>
+            <p className="text-xs text-gray-500">74% complete</p>
           </div>
-        )}
+
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <p className="text-sm text-gray-600 font-medium mb-3">Task Completion</p>
+            <p className="text-2xl font-bold text-gray-900 mb-2">245/300</p>
+            <p className="text-xs text-gray-500">82% complete</p>
+          </div>
+
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <p className="text-sm text-gray-600 font-medium mb-3">Revenue Target</p>
+            <p className="text-2xl font-bold text-gray-900 mb-2">$89K/$120K</p>
+            <p className="text-xs text-gray-500">74% complete</p>
+          </div>
+        </div>
+
+        <div className="mt-4 text-right">
+          <p className="text-sm text-gray-500">
+            <span className="font-semibold text-gray-700">4 days</span> remaining in November
+          </p>
+        </div>
       </div>
 
       {/* Upcoming Events and Employee Availability */}
