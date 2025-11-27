@@ -1,10 +1,6 @@
-'use client';
-
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { Provider } from 'react-redux';
-import store from '@/redux/store';
-import Notifications from '@/components/Notifications';
+import RootLayoutClient from './layout-client';
 import './globals.css';
 
 const geistSans = Geist({
@@ -17,6 +13,11 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
+export const metadata: Metadata = {
+  title: 'Team Pulse',
+  description: 'Productivity Monitoring Dashboard',
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,10 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Provider store={store}>
-          <Notifications />
-          {children}
-        </Provider>
+        <RootLayoutClient>{children}</RootLayoutClient>
       </body>
     </html>
   );
