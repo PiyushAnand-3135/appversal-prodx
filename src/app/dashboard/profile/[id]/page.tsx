@@ -116,7 +116,7 @@ export default function MemberProfilePage() {
                 <h2 className="text-4xl font-bold mb-2">{member.name}</h2>
                 <p className="text-blue-100 text-lg mb-3">{member.email}</p>
                 <div className="flex items-center gap-3">
-                  <div className={`w-4 h-4 rounded-full ${colors[member.status] || 'bg-gray-400'}`}></div>
+                  <div className={`w-4 h-4 rounded-full ${colors[member.status as keyof typeof colors] || 'bg-gray-400'}`}></div>
                   <span className="text-blue-100 font-medium text-lg">{member.status}</span>
                 </div>
               </div>
