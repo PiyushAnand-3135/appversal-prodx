@@ -17,7 +17,7 @@ import {
 } from 'react-icons/md';
 
 export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const { currentRole } = useSelector((state) => state.role);
 
@@ -40,7 +40,7 @@ export default function Sidebar() {
       id: 'tasks',
       label: 'Tasks',
       icon: MdTaskAlt,
-      href: '/dashboard',
+      href: '/dashboard/tasks',
       roles: ['lead', 'member'],
     },
     {
@@ -78,8 +78,8 @@ export default function Sidebar() {
   return (
     <aside
       className={`bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white transition-all duration-300 ease-in-out flex flex-col ${
-        isOpen ? 'w-72' : 'w-24'
-      } min-h-screen shadow-2xl border-r border-slate-700 rounded-3xl mt-4 mr-4 ml-2`}
+        isOpen ? 'w-72 ml-2 mr-4' : 'w-24 ml-4 mr-4'
+      } min-h-screen shadow-2xl border-r border-slate-700 rounded-3xl mt-4`}
     >
       {/* Sidebar Header */}
       <div className="p-6 flex items-center justify-between border-b border-slate-700">
@@ -100,7 +100,9 @@ export default function Sidebar() {
             <Link
               key={item.id}
               href={item.href}
-              className="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-slate-700 active:bg-slate-600 transition-all duration-200 group relative text-slate-200 hover:text-white"
+              className={`flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-slate-700 active:bg-slate-600 transition-all duration-200 group relative text-slate-200 hover:text-white ${
+                !isOpen ? 'justify-center' : ''
+              }`}
               title={!isOpen ? item.label : ''}
             >
               <IconComponent size={24} className="flex-shrink-0 group-hover:scale-110 transition-transform" />
@@ -121,7 +123,9 @@ export default function Sidebar() {
       <div className="px-3 py-4 border-t border-slate-700">
         <button
           onClick={handleLogout}
-          className="w-full flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-red-600/20 hover:text-red-400 active:bg-red-600/30 transition-all duration-200 group relative text-slate-200"
+          className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-red-600/20 hover:text-red-400 active:bg-red-600/30 transition-all duration-200 group relative text-slate-200 ${
+            !isOpen ? 'justify-center' : ''
+          }`}
           title={!isOpen ? 'Logout' : ''}
         >
           <MdLogout size={24} className="flex-shrink-0 group-hover:scale-110 transition-transform" />

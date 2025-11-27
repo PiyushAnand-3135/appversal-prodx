@@ -45,6 +45,11 @@ export default function Dashboard() {
       <div className="flex">
         <Sidebar />
         <main className="flex-1 px-6 py-8">
+          <div className="mb-6">
+            <h2 className="text-4xl font-bold text-gray-900">
+              Welcome, {currentRole === 'lead' ? 'Lead' : 'Member'}
+            </h2>
+          </div>
           {currentRole === 'lead' ? <TeamLeadView /> : <StatusSelector />}
         </main>
       </div>

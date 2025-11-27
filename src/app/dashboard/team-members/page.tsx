@@ -79,7 +79,7 @@ export default function TeamMembersPage() {
 
                     <div className="pt-4 border-t border-gray-200">
                       <p className="text-xs text-gray-500">
-                        Last updated: {new Date(member.lastStatusUpdate).toLocaleTimeString()}
+                        Last updated: {new Date(member.lastStatuusUpdate).toLocaleTimeString()}
                       </p>
                     </div>
 
