@@ -43,7 +43,7 @@ export default function Header() {
               onClick={() => handleRoleSwitch('lead')}
               className={`px-5 py-2 rounded-md font-semibold text-sm transition-all duration-200 ${
                 currentRole === 'lead'
-                  ? 'bg-blue-600 text-white shadow-md'
+                  ? 'bg-slate-700 text-white shadow-md'
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
               }`}
             >
@@ -53,7 +53,7 @@ export default function Header() {
               onClick={() => handleRoleSwitch('member')}
               className={`px-5 py-2 rounded-md font-semibold text-sm transition-all duration-200 ${
                 currentRole === 'member'
-                  ? 'bg-blue-600 text-white shadow-md'
+                  ? 'bg-slate-700 text-white shadow-md'
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
               }`}
             >

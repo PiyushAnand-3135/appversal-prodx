@@ -33,7 +33,7 @@ export default function Sidebar() {
       id: 'team',
       label: 'Team Members',
       icon: MdPeople,
-      href: '/dashboard',
+      href: '/dashboard/team-members',
       roles: ['lead'],
     },
     {
@@ -79,7 +79,7 @@ export default function Sidebar() {
     <aside
       className={`bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white transition-all duration-300 ease-in-out flex flex-col ${
         isOpen ? 'w-72' : 'w-24'
-      } min-h-screen shadow-2xl border-r border-slate-700`}
+      } min-h-screen shadow-2xl border-r border-slate-700 rounded-3xl mt-4 mr-4 ml-2`}
     >
       {/* Sidebar Header */}
       <div className="p-6 flex items-center justify-between border-b border-slate-700">

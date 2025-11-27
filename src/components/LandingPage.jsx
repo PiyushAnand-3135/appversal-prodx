@@ -37,7 +37,7 @@ export default function LandingPage() {
               onClick={handleGetStarted}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
-              className="group relative px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-blue-700 overflow-hidden"
+              className="group relative px-8 py-4 bg-slate-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-slate-800 overflow-hidden"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 Go to Dashboard

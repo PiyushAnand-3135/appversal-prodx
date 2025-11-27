@@ -62,7 +62,7 @@ export default function MemberCard({ member }) {
 
         <button
           onClick={() => router.push(`/dashboard/profile/${member.id}`)}
-          className="w-full px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+          className="w-full px-3 py-2 bg-slate-700 text-white text-sm font-medium rounded-lg hover:bg-slate-800 transition-colors"
         >
           View Profile
         </button>
