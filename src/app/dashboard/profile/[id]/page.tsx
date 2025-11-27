@@ -21,7 +21,7 @@ export default function MemberProfilePage() {
 
   useEffect(() => {
     if (member && member.tasks) {
-      const completed = member.tasks.filter((t) => t.completed).length;
+      const completed = member.tasks.filter((t: any) => t.completed).length;
       const total = member.tasks.length;
       const pending = total - completed;
       const completion = total > 0 ? Math.round((completed / total) * 100) : 0;
@@ -74,10 +74,10 @@ export default function MemberProfilePage() {
   };
 
   const tasksByProgress = [
-    { range: '0-25%', count: member.tasks?.filter((t) => t.progress <= 25).length || 0, fill: '#ef4444' },
-    { range: '26-50%', count: member.tasks?.filter((t) => t.progress > 25 && t.progress <= 50).length || 0, fill: '#f97316' },
-    { range: '51-75%', count: member.tasks?.filter((t) => t.progress > 50 && t.progress <= 75).length || 0, fill: '#eab308' },
-    { range: '76-100%', count: member.tasks?.filter((t) => t.progress > 75 && t.progress <= 100).length || 0, fill: '#10b981' },
+    { range: '0-25%', count: member.tasks?.filter((t: any) => t.progress <= 25).length || 0, fill: '#ef4444' },
+    { range: '26-50%', count: member.tasks?.filter((t: any) => t.progress > 25 && t.progress <= 50).length || 0, fill: '#f97316' },
+    { range: '51-75%', count: member.tasks?.filter((t: any) => t.progress > 50 && t.progress <= 75).length || 0, fill: '#eab308' },
+    { range: '76-100%', count: member.tasks?.filter((t: any) => t.progress > 75 && t.progress <= 100).length || 0, fill: '#10b981' },
   ];
 
   return (
@@ -202,7 +202,7 @@ export default function MemberProfilePage() {
                   paddingAngle={2}
                   dataKey="value"
                 >
-                  {tasksByStatus.map((entry, index) => (
+                  {tasksByStatus.map((entry: any, index: number) => (
                     <Cell key={`cell-${index}`} fill={entry.fill} />
                   ))}
                 </Pie>
@@ -263,7 +263,7 @@ export default function MemberProfilePage() {
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">Recent Tasks</h3>
           <div className="space-y-3">
-            {member.tasks && member.tasks.slice(-8).map((task) => (
+            {member.tasks && member.tasks.slice(-8).map((task: any) => (
               <div key={task.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors">
                 <div className="flex-1">
                   <h4 className="font-medium text-gray-900">{task.title}</h4>
