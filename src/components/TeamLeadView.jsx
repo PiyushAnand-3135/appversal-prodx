@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MemberCard from './MemberCard';
 import TaskForm from './TaskForm';
 import StatusDistribution from './StatusDistribution';
 import MemberProfile from './MemberProfile';
+import { removeTask } from '@/redux/slices/membersSlice';
+import { addNotification } from '@/redux/slices/notificationSlice';
 
 export default function TeamLeadView() {
+  const dispatch = useDispatch();
   const members = useSelector((state) => state.members.members);
   const [statusFilter, setStatusFilter] = useState('');
   const [sortBy, setSortBy] = useState('name');
@@ -99,6 +102,75 @@ export default function TeamLeadView() {
           <TaskForm />
         </div>
         <StatusDistribution />
+      </div>
+
+      <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">Active Tasks</h2>
+
+        <div className="space-y-3">
+          {members.flatMap((member) =>
+            member.tasks
+              ?.filter((task) => !task.completed)
+              .map((task) => (
+                <div
+                  key={`${member.id}-${task.id}`}
+                  className="flex items-center justify-between bg-gray-50 rounded-lg p-4 border border-gray-200"
+                >
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={member.avatar}
+                        alt={member.name}
+                        className="w-8 h-8 rounded-full"
+                      />
+                      <div>
+                        <p className="font-medium text-gray-900">{member.name}</p>
+                        <p className="text-sm text-gray-600">{task.title}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <div className="text-right">
+                      <p className="text-sm font-semibold text-gray-900">{task.progress}%</p>
+                      <p className="text-xs text-gray-500">
+                        {new Date(task.dueDate).toLocaleDateString()}
+                      </p>
+                    </div>
+
+                    <div className="w-16 bg-gray-200 rounded-full h-2">
+                      <div
+                        className="h-2 rounded-full bg-blue-500 transition-all"
+                        style={{ width: `${task.progress}%` }}
+                      ></div>
+                    </div>
+
+                    <button
+                      onClick={() => {
+                        dispatch(removeTask({ memberId: member.id, taskId: task.id }));
+                        dispatch(
+                          addNotification({
+                            type: 'warning',
+                            title: 'Task Removed',
+                            message: `${task.title} from ${member.name} has been removed`,
+                          })
+                        );
+                      }}
+                      className="text-red-500 hover:text-red-700 text-sm font-medium whitespace-nowrap"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))
+          )}
+        </div>
+
+        {members.every((m) => !m.tasks?.some((t) => !t.completed)) && (
+          <div className="text-center py-8">
+            <p className="text-gray-500">No active tasks</p>
+          </div>
+        )}
       </div>
 
       <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">

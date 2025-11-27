@@ -19,9 +19,11 @@ export default function Header() {
     <header className="bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">TP</span>
-          </div>
+          <img
+            src="/team_pulse_logo.png"
+            alt="Team Pulse"
+            className="w-16 h-16 object-contain"
+          />
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Team Pulse</h1>
             <p className="text-xs text-gray-500">Productivity Monitoring Dashboard</p>

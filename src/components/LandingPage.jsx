@@ -1,14 +1,16 @@
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { switchRole, setUser } from '@/redux/slices/roleSlice';
+import { switchRole } from '@/redux/slices/roleSlice';
 
-export default function LandingPage({ onNavigate }) {
+export default function LandingPage() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const [isHovering, setIsHovering] = useState(false);
 
   const handleGetStarted = () => {
     dispatch(switchRole('lead'));
-    onNavigate('dashboard');
+    router.push('/dashboard');
   };
 
   return (
@@ -16,9 +18,11 @@ export default function LandingPage({ onNavigate }) {
       <div className="max-w-4xl w-full">
         <div className="text-center mb-16">
           <div className="inline-block mb-6">
-            <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow">
-              <span className="text-white font-bold text-4xl">TP</span>
-            </div>
+            <img
+              src="/team_pulse_logo.png"
+              alt="Team Pulse"
+              className="w-40 h-40 object-contain"
+            />
           </div>
 
           <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-4 leading-tight">

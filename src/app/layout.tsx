@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { Provider } from 'react-redux';
 import store from '@/redux/store';
+import Notifications from '@/components/Notifications';
 import './globals.css';
 
 const geistSans = Geist({
@@ -24,7 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Provider store={store}>{children}</Provider>
+        <Provider store={store}>
+          <Notifications />
+          {children}
+        </Provider>
       </body>
     </html>
   );

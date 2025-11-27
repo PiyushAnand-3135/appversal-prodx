@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTask } from '@/redux/slices/membersSlice';
+import { addNotification } from '@/redux/slices/notificationSlice';
 
 export default function TaskForm() {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ export default function TaskForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (selectedMember && title && dueDate) {
+      const member = members.find((m) => m.id === selectedMember);
       dispatch(
         addTask({
           memberId: selectedMember,
@@ -19,6 +21,13 @@ export default function TaskForm() {
             title,
             dueDate,
           },
+        })
+      );
+      dispatch(
+        addNotification({
+          type: 'success',
+          title: 'Task Created!',
+          message: `"${title}" assigned to ${member.name}`,
         })
       );
       setTitle('');

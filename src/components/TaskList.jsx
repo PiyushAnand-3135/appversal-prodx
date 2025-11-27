@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { updateTaskProgress, removeTask } from '@/redux/slices/membersSlice';
+import { addNotification } from '@/redux/slices/notificationSlice';
 
 export default function TaskList({ memberId, isTeamMember = false }) {
   const dispatch = useDispatch();
@@ -34,7 +35,16 @@ export default function TaskList({ memberId, isTeamMember = false }) {
               </div>
               {!task.completed && (
                 <button
-                  onClick={() => dispatch(removeTask({ memberId, taskId: task.id }))}
+                  onClick={() => {
+                    dispatch(removeTask({ memberId, taskId: task.id }));
+                    dispatch(
+                      addNotification({
+                        type: 'warning',
+                        title: 'Task Removed',
+                        message: `${task.title} has been removed`,
+                      })
+                    );
+                  }}
                   className="text-red-500 hover:text-red-700 text-sm font-medium ml-2"
                 >
                   Delete
@@ -60,29 +70,49 @@ export default function TaskList({ memberId, isTeamMember = false }) {
               {isTeamMember && !task.completed && (
                 <div className="flex gap-2 mt-3">
                   <button
-                    onClick={() =>
+                    onClick={() => {
+                      const newProgress = task.progress - 10;
                       dispatch(
                         updateTaskProgress({
                           memberId,
                           taskId: task.id,
-                          progress: task.progress - 10,
+                          progress: newProgress,
                         })
-                      )
-                    }
+                      );
+                      dispatch(
+                        addNotification({
+                          type: 'info',
+                          title: 'Progress Updated',
+                          message: `${task.title} - ${newProgress}% complete`,
+                        })
+                      );
+                    }}
                     className="flex-1 px-2 py-1 text-xs font-medium bg-red-100 text-red-700 hover:bg-red-200 rounded transition-colors"
                   >
                     -10%
                   </button>
                   <button
-                    onClick={() =>
+                    onClick={() => {
+                      const newProgress = task.progress + 10;
                       dispatch(
                         updateTaskProgress({
                           memberId,
                           taskId: task.id,
-                          progress: task.progress + 10,
+                          progress: newProgress,
                         })
-                      )
-                    }
+                      );
+                      const notificationType = newProgress === 100 ? 'success' : 'info';
+                      const message = newProgress === 100
+                        ? `Congratulations! ${task.title} is complete!`
+                        : `${task.title} - ${newProgress}% complete`;
+                      dispatch(
+                        addNotification({
+                          type: notificationType,
+                          title: newProgress === 100 ? 'Task Completed! 🎉' : 'Progress Updated',
+                          message,
+                        })
+                      );
+                    }}
                     className="flex-1 px-2 py-1 text-xs font-medium bg-green-100 text-green-700 hover:bg-green-200 rounded transition-colors"
                   >
                     +10%
