@@ -9,7 +9,7 @@ export default function MemberProfilePage() {
   const params = useParams();
   const router = useRouter();
   const members = useSelector((state: any) => state.members.members);
-  const memberId = params.id as string;
+  const memberId = (params?.id as string) || '';
   const member = members.find((m) => m.id === memberId);
   const [growthData, setGrowthData] = useState([]);
   const [stats, setStats] = useState({
