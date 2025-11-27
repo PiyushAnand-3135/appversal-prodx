@@ -1,3 +1,5 @@
+'use client';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { switchRole, setUser } from '@/redux/slices/roleSlice';
 import Link from 'next/link';

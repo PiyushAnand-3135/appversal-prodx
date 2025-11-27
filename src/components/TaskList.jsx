@@ -1,3 +1,5 @@
+'use client';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { updateTaskProgress, removeTask } from '@/redux/slices/membersSlice';
 import { addNotification } from '@/redux/slices/notificationSlice';

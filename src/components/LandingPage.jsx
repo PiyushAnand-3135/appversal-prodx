@@ -1,5 +1,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+'use client';
+
 import { useDispatch } from 'react-redux';
 import { switchRole } from '@/redux/slices/roleSlice';
 

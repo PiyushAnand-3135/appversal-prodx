@@ -1,3 +1,5 @@
+'use client';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { updateMemberStatus } from '@/redux/slices/membersSlice';
 import { setUser } from '@/redux/slices/roleSlice';
