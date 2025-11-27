@@ -31,7 +31,7 @@ export default function StatusSelector() {
           <select
             value={currentUser}
             onChange={(e) => handleMemberChange(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900"
           >
             {members.map((m) => (
               <option key={m.id} value={m.id}>

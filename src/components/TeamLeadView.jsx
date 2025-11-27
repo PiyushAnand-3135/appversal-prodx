@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import MemberCard from './MemberCard';
 import TaskForm from './TaskForm';
 import StatusDistribution from './StatusDistribution';
-import MemberProfile from './MemberProfile';
 import { removeTask } from '@/redux/slices/membersSlice';
 import { addNotification } from '@/redux/slices/notificationSlice';
 
@@ -12,7 +11,6 @@ export default function TeamLeadView() {
   const members = useSelector((state) => state.members.members);
   const [statusFilter, setStatusFilter] = useState('');
   const [sortBy, setSortBy] = useState('name');
-  const [selectedMember, setSelectedMember] = useState(null);
 
   const statusCounts = {
     Working: members.filter((m) => m.status === 'Working').length,
@@ -36,17 +34,8 @@ export default function TeamLeadView() {
     filteredMembers = [...filteredMembers].sort((a, b) => a.name.localeCompare(b.name));
   }
 
-  const handleViewProfile = (member) => {
-    setSelectedMember(member);
-  };
-
-  const handleCloseProfile = () => {
-    setSelectedMember(null);
-  };
-
   return (
     <div className="space-y-6">
-      {selectedMember && <MemberProfile member={selectedMember} onClose={handleCloseProfile} />}
       <div className="grid grid-cols-4 gap-4">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4">
           <div className="flex items-center justify-between">
@@ -206,7 +195,7 @@ export default function TeamLeadView() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+              className="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900"
             >
               <option value="">All Statuses</option>
               <option value="Working">Working</option>
@@ -218,7 +207,7 @@ export default function TeamLeadView() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+              className="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900"
             >
               <option value="name">Sort by Name</option>
               <option value="tasks">Sort by Active Tasks</option>
@@ -228,7 +217,7 @@ export default function TeamLeadView() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredMembers.map((member) => (
-            <MemberCard key={member.id} member={member} onViewProfile={handleViewProfile} />
+            <MemberCard key={member.id} member={member} />
           ))}
         </div>
 

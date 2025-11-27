@@ -1,3 +1,7 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
+
 const statusColors = {
   Working: 'bg-green-100 text-green-800 border-green-300',
   Break: 'bg-yellow-100 text-yellow-800 border-yellow-300',
@@ -12,7 +16,8 @@ const statusDots = {
   Offline: 'bg-gray-400',
 };
 
-export default function MemberCard({ member, onViewProfile }) {
+export default function MemberCard({ member }) {
+  const router = useRouter();
   const activeTasks = member.tasks?.filter((t) => !t.completed) || [];
   const completedTasks = member.tasks?.filter((t) => t.completed) || [];
 
@@ -56,7 +61,7 @@ export default function MemberCard({ member, onViewProfile }) {
         </div>
 
         <button
-          onClick={() => onViewProfile(member)}
+          onClick={() => router.push(`/dashboard/profile/${member.id}`)}
           className="w-full px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
         >
           View Profile
@@ -65,3 +70,4 @@ export default function MemberCard({ member, onViewProfile }) {
     </div>
   );
 }
+

@@ -20,7 +20,7 @@ export default function TaskList({ memberId, isTeamMember = false }) {
 
   const renderTasks = (tasks, title) => (
     <>
-      <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
+      <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase">
         {title} ({tasks.length})
       </h3>
       <div className="space-y-3 mb-6">
